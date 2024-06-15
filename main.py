@@ -1,4 +1,4 @@
-from augmentation import *
+from augmentation import augmentDatset
 from dataset_prepsplit import trainTestSplit
 
 
