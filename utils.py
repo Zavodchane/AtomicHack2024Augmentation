@@ -58,7 +58,6 @@ def formatBBOXes(bboxesUnformatted):
 
     for bbox in bboxesUnformatted:
         formattedBBOXnoLabel = list(map(lambda fcoord: float(f'{float(fcoord):.6f}'), bbox[1::]))
-        print(formattedBBOXnoLabel)
         label = classIdToClassName[bbox[0]]
         formattedBBOX = [*formattedBBOXnoLabel, label]
         formattedBBOXes.append(formattedBBOX)
