@@ -4,18 +4,25 @@ import utils
 import os
 
 def transformAndSave(transform, img, bboxes, imgFilename, bboxesFilename):
-    transformResult = transform(image=img, bboxes=bboxes)
-    augImg = transformResult["image"]
-    augBboxes = transformResult["bboxes"]
-    faugBboxes = []
-    for bbox in augBboxes:
+    bboxes_local = []
+    for bbox in bboxes:
         faugBbox = list(map(lambda fcoord: float(f'{float(fcoord):.6f}'), bbox[:-1]))
         faugBbox = [*faugBbox, bbox[-1]]
-        faugBboxes.append(faugBbox)
-    unformattedAugBboxes = utils.unformatBBOXes(faugBboxes)
-    unformattedAugBboxes = list(map(lambda uB: list(map(lambda b: str(b), uB)), unformattedAugBboxes))
-    utils.saveBboxes(bboxesFilename, unformattedAugBboxes)
-    utils.saveImage(imgFilename, augImg)
+        bboxes_local.append(faugBbox)
+    try:
+        transformResult = transform(image=img, bboxes=bboxes_local)
+        augImg = transformResult["image"]
+        augBboxes = transformResult["bboxes"]
+        faugBboxes = []
+        for bbox in augBboxes:
+            faugBbox = list(map(lambda fcoord: float(f'{float(fcoord):.6f}'), bbox[:-1]))
+            faugBbox = [*faugBbox, bbox[-1]]
+            faugBboxes.append(faugBbox)
+        unformattedAugBboxes = utils.unformatBBOXes(faugBboxes)
+        unformattedAugBboxes = list(map(lambda uB: list(map(lambda b: str(b), uB)), unformattedAugBboxes))
+        utils.saveBboxes(bboxesFilename, unformattedAugBboxes)
+        utils.saveImage(imgFilename, augImg)
+    except: pass
 
 
 def augRot0(imgPath : str, labelsPath : str, resultFolderPath : str):
