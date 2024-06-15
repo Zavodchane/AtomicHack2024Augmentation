@@ -1,6 +1,6 @@
-from augmentation import augmentDatset
+from augmentation import augmentDataset
 from dataset_prepsplit import trainTestSplit
 
 
-augmentDatset("test_data", "augmentation_output")
+augmentDataset("test_data", "augmentation_output")
 trainTestSplit("augmentation_output", "augmented_dataset")

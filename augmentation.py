@@ -151,7 +151,7 @@ def augRot270Flip(imgPath : str, labelsPath : str, resultFolderPath : str):
     transformAndSave(transform, img, bboxes, imgFilename, bboxesFilename)
 
 
-def augmentDatset(datasetFolder, resultFolder):
+def augmentDataset(datasetFolder, resultFolder):
     print("Augmentation started!")
 
     try: os.mkdir(resultFolder)
