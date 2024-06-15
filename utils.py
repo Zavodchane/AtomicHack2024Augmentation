@@ -1,5 +1,6 @@
 import cv2
 import matplotlib.pyplot as plt
+from decimal import Decimal
 
 
 classIdToClassName = {
@@ -56,7 +57,8 @@ def formatBBOXes(bboxesUnformatted):
     formattedBBOXes = []
 
     for bbox in bboxesUnformatted:
-        formattedBBOXnoLabel = list(map(lambda coord: float(coord), bbox[1::]))
+        formattedBBOXnoLabel = list(map(lambda fcoord: float(f'{float(fcoord):.6f}'), bbox[1::]))
+        print(formattedBBOXnoLabel)
         label = classIdToClassName[bbox[0]]
         formattedBBOX = [*formattedBBOXnoLabel, label]
         formattedBBOXes.append(formattedBBOX)

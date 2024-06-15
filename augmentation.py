@@ -7,7 +7,12 @@ def transformAndSave(transform, img, bboxes, imgFilename, bboxesFilename):
     transformResult = transform(image=img, bboxes=bboxes)
     augImg = transformResult["image"]
     augBboxes = transformResult["bboxes"]
-    unformattedAugBboxes = utils.unformatBBOXes(augBboxes)
+    faugBboxes = []
+    for bbox in augBboxes:
+        faugBbox = list(map(lambda fcoord: float(f'{float(fcoord):.6f}'), bbox[:-1]))
+        faugBbox = [*faugBbox, bbox[-1]]
+        faugBboxes.append(faugBbox)
+    unformattedAugBboxes = utils.unformatBBOXes(faugBboxes)
     unformattedAugBboxes = list(map(lambda uB: list(map(lambda b: str(b), uB)), unformattedAugBboxes))
     utils.saveBboxes(bboxesFilename, unformattedAugBboxes)
     utils.saveImage(imgFilename, augImg)
