@@ -148,13 +148,3 @@ def augRot270Flip(imgPath : str, labelsPath : str, resultFolderPath : str):
     imgFilename = resultFolderPath + "/" + imgPath.split("/")[-1].split(".")[0] + "_270_flip.jpg"
     bboxesFilename = resultFolderPath + "/" + labelsPath.split("/")[-1].split(".")[0] + "_270_flip.txt"
     transformAndSave(transform, img, bboxes, imgFilename, bboxesFilename)
-
-
-augRot0("dataset/1 (1).jpg", "dataset/1 (1).txt", "test")     
-augRot0Flip("dataset/1 (1).jpg", "dataset/1 (1).txt", "test")
-augRot90("dataset/1 (1).jpg", "dataset/1 (1).txt", "test")
-augRot90Flip("dataset/1 (1).jpg", "dataset/1 (1).txt", "test")
-augRot180("dataset/1 (1).jpg", "dataset/1 (1).txt", "test")
-augRot180Flip("dataset/1 (1).jpg", "dataset/1 (1).txt", "test")
-augRot270("dataset/1 (1).jpg", "dataset/1 (1).txt", "test")
-augRot270Flip("dataset/1 (1).jpg", "dataset/1 (1).txt", "test")
